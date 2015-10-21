@@ -42,6 +42,8 @@
 
 ;; Load the fancy keyboard layout
 (stumpwm:run-shell-command "$HOME/.local/bin/fix-keyboard")
+; Start Emacs
+(stumpwm:run-shell-command "emacs --daemon")
 
 ;; Start Emacs
 (stumpwm:run-shell-command "emacs")
@@ -58,6 +60,9 @@
 ;;(define-key *root-map* (kbd "C-b") (echo-string (current-battery-charge)))
 
 ;; Override the xterm short keys
+;; Start emacsclient instead of emacs
+(define-key *root-map* (kbd "e") "exec emacsclient -c")
+(define-key *root-map* (kbd "C-e") "exec emacsclient -c")
 (define-key *root-map* (kbd "C-c") "exec urxvt")
 
 (define-key *root-map* (kbd "c") "exec urxvt")
