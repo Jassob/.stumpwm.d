@@ -75,6 +75,9 @@
 
 (define-key *root-map* (kbd "C-d") "exec dmenu_run")
 
+(define-key *root-map* (kbd "C-p")
+  "exec import -window root png:$HOME/Desktop/screenshot_$(date +%F_%H-%M-%S).png")
+
 ;; Message window font
 (set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
 
