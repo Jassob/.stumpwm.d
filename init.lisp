@@ -14,6 +14,11 @@
     (when cmd
       (eval-command cmd t))))
 
+;; launch Web browser
+(defcommand firefox () ()
+  "Start Firefox or switch to it, if it is already running."
+  (run-or-raise "firefox" '(:class "Firefox")))
+
 ;; Load extra config files
 ; Load Battery
 (load "/home/jassob/.stumpwm.d/plugins/battery.lisp")
