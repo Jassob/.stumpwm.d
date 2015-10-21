@@ -24,6 +24,10 @@
         (233 . "XF86MonBrightnessUp")
         (232 . "XF86MonBrightnessDown")))
 
+(setf *mpris-destination* "org.mpris.MediaPlayer2.spotify")
+(setf *mpris-protocol*    "/org/mpris/MediaPlayer2")
+(setf *mpris-ns*          "org.mpris.MediaPlayer2.Player.")
+
 ;; Map keycodes to keysyms
 (mapcar (lambda (pair)
 	  (let* ((keycode (car pair))
@@ -45,3 +49,22 @@
 ;; Backlight control
 (define-key stumpwm:*top-map* (stumpwm:kbd "XF86MonBrightnessUp") "exec xbacklight -inc 5")
 (define-key stumpwm:*top-map* (stumpwm:kbd "XF86MonBrightnessDown") "exec xbacklight -dec 5")
+
+;; Send commands to spotify process
+(defun send-to-spotify
+    (command)
+  "Send command to Spotify process via MPRIS"
+  (concat "exec dbus-send " "--print-reply " "--dest=" *mpris-destination* " " *mpris-protocol* " " *mpris-ns* command))
+
+;; Play or pause spotify music
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioPlay")
+  (send-to-spotify "PlayPause"))
+
+;; Play next song in spotify
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioNext")
+  (send-to-spotify "Next"))
+
+;; Play next song in spotify
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioPrev")
+  (send-to-spotify "Previous"))
+
