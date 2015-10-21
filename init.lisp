@@ -55,6 +55,10 @@
 ;; Browse somewhere
 (define-key *root-map* (kbd "b") "colon1 exec firefox http://www.")
 ;; Ssh somewhere
+; Browse somewhere
+(define-key *root-map* (kbd "b") "colon1 exec conkeror http://www.")
+; Start or switch to firefox
+(define-key *root-map* (kbd "C-f") "firefox")
 (define-key *root-map* (kbd "C-s") "colon1 exec urxvt -e ssh ")
 ;; Lock screen
 (define-key *root-map* (kbd "C-l") "exec xlock")
