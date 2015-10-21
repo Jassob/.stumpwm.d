@@ -27,52 +27,38 @@
 ; Load Emacs setup
 (load "/home/jassob/.stumpwm.d/plugins/emacs.lisp")
 
-;; Start x-f.lux
+;; Start background programs
+;Start x-f.lux
 (stumpwm:run-shell-command "redshift")
-
-;; Make the cursor an ordinary left pointer instead of a cross
+; Make the cursor an ordinary left pointer instead of a cross
 (stumpwm:run-shell-command "xsetroot -cursor_name left_ptr")
-
-;; Start syndaemon and make sure that touchpad is turned off when writing
-;; For now I try to stay with only using synaptics default palm detection
-;; (stumpwm:run-shell-command "syndaemon")
-
-;; Set a beautiful background
+; Set a beautiful background
 (stumpwm:run-shell-command "feh --bg-center $HOME/Pictures/numix_blue_tardis.png")
-
-;; Load the fancy keyboard layout
+; Load the fancy keyboard layout
 (stumpwm:run-shell-command "$HOME/.local/bin/fix-keyboard")
 ; Start Emacs
 (stumpwm:run-shell-command "emacs --daemon")
 ; Start dropbox
 (stumpwm:run-shell-command "dropbox-cli start")
 
-;; Start Emacs
-(stumpwm:run-shell-command "emacs")
-
-;; Read some doc
+;; Keybindings
+; Read some doc
 (define-key *root-map* (kbd "d") "exec evince")
-;; Browse somewhere
-(define-key *root-map* (kbd "b") "colon1 exec firefox http://www.")
-;; Ssh somewhere
 ; Browse somewhere
 (define-key *root-map* (kbd "b") "colon1 exec conkeror http://www.")
 ; Start or switch to firefox
 (define-key *root-map* (kbd "C-f") "firefox")
+; Ssh somewhere
 (define-key *root-map* (kbd "C-s") "colon1 exec urxvt -e ssh ")
-;; Lock screen
+; Lock screen
 (define-key *root-map* (kbd "C-l") "exec xlock")
-
-;;(define-key *root-map* (kbd "C-b") (echo-string (current-battery-charge)))
-
-;; Override the xterm short keys
 ;; Start emacsclient instead of emacs
 (define-key *root-map* (kbd "e") "exec emacsclient -c")
 (define-key *root-map* (kbd "C-e") "exec emacsclient -c")
+; Override the xterm short keys
 (define-key *root-map* (kbd "C-c") "exec urxvt")
-
 (define-key *root-map* (kbd "c") "exec urxvt")
-
+; Run dmenu on C-z C-d
 (define-key *root-map* (kbd "C-d") "exec dmenu_run")
 
 (define-key *root-map* (kbd "C-p")
