@@ -14,10 +14,16 @@
     (when cmd
       (eval-command cmd t))))
 
-;; launch Web browser
+;; launch or raise web browser
 (defcommand firefox () ()
-  "Start Firefox or switch to it, if it is already running."
-  (run-or-raise "firefox" '(:class "Firefox")))
+            "Start Firefox or switch to it, if it is already running."
+            (run-or-raise "firefox" '(:class "Firefox")))
+
+;; launch or raise spotify
+(defcommand spotify () ()
+            "Start Spotify or switch to it, if it already running."
+            (run-or-raise "spotify" '(:class "Spotify")))
+
 
 ;; Load extra config files
 ; Load Battery
@@ -48,8 +54,10 @@
 (define-key *root-map* (kbd "b") "colon1 exec conkeror http://www.")
 ; Start or switch to firefox
 (define-key *root-map* (kbd "C-f") "firefox")
+; Start or switch to spotify
+(define-key *root-map* (kbd "C-s") "spotify")
 ; Ssh somewhere
-(define-key *root-map* (kbd "C-s") "colon1 exec urxvt -e ssh ")
+(define-key *root-map* (kbd "C-S") "colon1 exec urxvt -e ssh ")
 ; Lock screen
 (define-key *root-map* (kbd "C-l") "exec xlock")
 ;; Start emacsclient instead of emacs
