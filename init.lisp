@@ -44,6 +44,8 @@
 (stumpwm:run-shell-command "$HOME/.local/bin/fix-keyboard")
 ; Start Emacs
 (stumpwm:run-shell-command "emacs --daemon")
+; Start dropbox
+(stumpwm:run-shell-command "dropbox-cli start")
 
 ;; Start Emacs
 (stumpwm:run-shell-command "emacs")
