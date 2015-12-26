@@ -7,6 +7,9 @@
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-z"))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Commands
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; prompt the user for an interactive command. The first arg is an
 ;; optional initial contents.
 (defcommand colon1 (&optional (initial "")) (:rest)
@@ -33,6 +36,22 @@
 (defcommand show-battery () ()
   (echo-string (current-screen) (run-shell-command "acpi" t)))
 
+;; Toggles the touchpad, uses synclient
+(defcommand toggle-touchpad () ()
+  "Toggles the touchpad using synclient"
+  (let
+      ;; Stores the integer showing whether touchpad is off or not in touchpadOff
+      ((touchpadOff (remove-if-not
+                     #'digit-char-p
+                     (run-shell-command "synclient | grep TouchpadOff" t))))
+    ;; touchpadOff is either "0" or "1"
+    (if (string= touchpadOff "0")
+        (run-shell-command "synclient TouchpadOff=1") ;; turn off touchpad
+        (run-shell-command "synclient TouchpadOff=0") ;; turn on touchpad
+        ))
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load extra config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Multimedia keys
