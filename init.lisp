@@ -24,14 +24,23 @@
             "Start Spotify or switch to it, if it already running."
             (run-or-raise "spotify" '(:class "Spotify")))
 
+;; launch or raise emacs
+(defcommand emacs () ()
+            "Start Emacsclient or switch to it, if it is already running."
+            (run-or-raise "emacsclient" '(:class "Emacs")))
+
+;; Prints the current battery status, as showed by ACPI
+(defcommand show-battery () ()
+  (echo-string (current-screen) (run-shell-command "acpi" t)))
 
 ;; Load extra config files
-; Load Battery
-(load "/home/jassob/.stumpwm.d/plugins/battery.lisp")
-; Load Multimedia keys 
-(load "/home/jassob/.stumpwm.d/plugins/multimedia-keys.lisp")
-; Load Emacs setup
-(load "/home/jassob/.stumpwm.d/plugins/emacs.lisp")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load Multimedia keys
+(load "~/.stumpwm.d/configs/multimedia-keys.lisp")
+;; Keybindings
+(load "~/.stumpwm.d/configs/keybindnings.lisp")
+;; Load Emacs setup
+(load "~/.stumpwm.d/configs/emacs.lisp")
 
 ;; Start background programs
 ;Start x-f.lux
@@ -47,36 +56,10 @@
 ; Start dropbox
 (stumpwm:run-shell-command "dropbox-cli start")
 
-;; Keybindings
-; Read some doc
-(define-key *root-map* (kbd "d") "exec evince")
-; Browse somewhere
-(define-key *root-map* (kbd "b") "colon1 exec conkeror http://www.")
-; Start or switch to firefox
-(define-key *root-map* (kbd "C-f") "firefox")
-; Start or switch to spotify
-(define-key *root-map* (kbd "C-s") "spotify")
-; Ssh somewhere
-(define-key *root-map* (kbd "C-S") "colon1 exec urxvt -e ssh ")
-; Lock screen
-(define-key *root-map* (kbd "C-l") "exec xlock")
-;; Start emacsclient instead of emacs
-(define-key *root-map* (kbd "e") "exec emacsclient -c")
-(define-key *root-map* (kbd "C-e") "exec emacsclient -c")
-; Override the xterm short keys
-(define-key *root-map* (kbd "C-c") "exec urxvt")
-(define-key *root-map* (kbd "c") "exec urxvt")
-; Run dmenu on C-z C-d
-(define-key *root-map* (kbd "C-d") "exec dmenu_run")
-
-(define-key *root-map* (kbd "C-p")
-  "exec import -window root png:$HOME/Desktop/screenshot_$(date +%F_%H-%M-%S).png")
-
 ;; Message window font
 (set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
 
 ;;; Define window placement policy...
-
 ;; Clear rules
 (clear-window-placement-rules)
 
