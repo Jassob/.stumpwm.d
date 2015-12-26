@@ -1,6 +1,9 @@
 ;; Load swank.
 ;; *prefix-key* ; swank will kick this off
-(load "/home/jassob/quicklisp/dists/quicklisp/software/slime-2.13/swank-loader.lisp")
+
+(in-package :stumpwm)
+(ql:quickload :swank)
+;; (load "/home/jassob/quicklisp/dists/quicklisp/software/slime-2.13/swank-loader.lisp")
 (swank-loader:init)
 (defcommand swank () ()
             (swank:create-server :port 4005
