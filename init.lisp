@@ -36,7 +36,6 @@
 (run-shell-command "redshift")
 (run-shell-command "xsetroot -cursor_name left_ptr")
 (run-shell-command "feh --bg-center $HOME/Pictures/numix_blue_tardis.png")
-(run-shell-command "$HOME/.local/bin/fix-keyboard")
 (run-shell-command "emacs --daemon")
 (run-shell-command "dropbox-cli start")
 (run-shell-command "twmnd")
