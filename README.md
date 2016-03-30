@@ -14,9 +14,9 @@ As it says on their [website]:
 language that with all those parens?"
 
 Yes it is! Common Lisp is the second oldest programming language still
-in use today (FORTRAN is older) (source: [@abelsonsussman1996])
+in use today (FORTRAN is older) (source: [@abelsonsussman1996sicp])
 
-*"Okay, now that is all fine and dandy, but why would anyone use it?"*
+"Okay, now that is all fine and dandy, but why would anyone use it?"
 
 Well, I like to learn new things and programming in Lisp is not only different from more mainstream languages, but it is also a great fun. PLUS with StumpWM I can change any line in my config and just reevaluate it to see the changes I made, there is no need to reload or restart the VM.
 
@@ -28,7 +28,7 @@ Set up this config
 
 This repo has a submodule called `contrib` which remote points to [stumpwm-contrib's github page](http://github.com/stumpwm/stumpwm-contrib).
 
-To use the code in this repo the submodule needs to be initialized: \
+To use the code in this repo the submodule needs to be initialized: <br>
 (This assumes you are inside a terminal inside this repo)
 
 	> git submodule init
@@ -44,4 +44,4 @@ References
 ----------------
 
 [website]: http://stumpwm.github.io
-[@abelsonsussman1996]: H. Abelson and G. J. Sussman, *Structure and Interpretation of Computer Programs*, second edition. Cambridge, MA: MIT Press, 1996
+[@abelsonsussman1996sicp]: H. Abelson and G. J. Sussman, *Structure and Interpretation of Computer Programs*, second edition. Cambridge, MA: MIT Press, 1996
