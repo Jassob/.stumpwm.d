@@ -36,6 +36,11 @@ To use the code in this repo the submodule needs to be initialized: <br>
 
 Your terminal should now clone the `stumpwm-contrib` repo into the contrib/ directory.
 
+To make sure that StumpWM actually reads your configs you need to either:
+
+* Put this folder in $HOME and name it .stumpwm.d, or
+* Place a symlink of init.lisp in $HOME and name it .stumpwmrc
+
 This config is very much created just to suit my needs, so you will have to modify it yourself, but I hope it will shine some light on what you can do with StumpWM and inspire you to create your own specialized config.
 
 Feel free to ask questions or use any of the code!
