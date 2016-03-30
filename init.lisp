@@ -74,3 +74,6 @@
 (define-frame-preference "Emacs"
   (1 t t :restore "emacs-editing-dump" :title "...xdvi")
   (0 t t :create "emacs-dump" :class "Emacs"))
+
+;; Load temporary hacks
+(load "~/.stumpwm.d/configs/hacks.lisp")
