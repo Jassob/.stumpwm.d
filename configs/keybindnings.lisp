@@ -1,5 +1,6 @@
-;; Read some doc
 (in-package :stumpwm)
+
+;; Read some doc
 (define-key *root-map* (kbd "d") "exec evince")
 
 ;; Browse somewhere
@@ -22,7 +23,7 @@
 (define-key *root-map* (kbd "C-e") "exec emacsclient -c")
 
 ;; Override the xterm short keys
-(define-key *root-map* (kbd "C-c") "exec urxvt")
+(define-key *root-map* (kbd "C-c") "urxvt")
 (define-key *root-map* (kbd "c") "exec urxvt")
 
 ;; Run dmenu on C-z C-d
@@ -30,7 +31,9 @@
 
 ;; Screenshot
 (define-key *root-map* (kbd "C-p")
-  "exec import -window root png:$HOME/Desktop/screenshot_$(date +%F_%H-%M-%S).png")
+  "screenshot")
+(define-key *root-map* (kbd "M-p")
+  "part-screenshot")
 
 ;; Print battery status
 (define-key *root-map* (kbd "C-b") "show-battery")
