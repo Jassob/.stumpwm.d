@@ -33,21 +33,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start background programs
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;Start x-f.lux
-(stumpwm:run-shell-command "redshift")
-; Make the cursor an ordinary left pointer instead of a cross
-(stumpwm:run-shell-command "xsetroot -cursor_name left_ptr")
-; Set a beautiful background
-(stumpwm:run-shell-command "feh --bg-center $HOME/Pictures/numix_blue_tardis.png")
-; Load the fancy keyboard layout
-(stumpwm:run-shell-command "$HOME/.local/bin/fix-keyboard")
-; Start Emacs
-(stumpwm:run-shell-command "emacs --daemon")
-; Start dropbox
-(stumpwm:run-shell-command "dropbox-cli start")
-
-;; Message window font
-(set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
+(run-shell-command "redshift")
+(run-shell-command "xsetroot -cursor_name left_ptr")
+(run-shell-command "feh --bg-center $HOME/Pictures/numix_blue_tardis.png")
+(run-shell-command "$HOME/.local/bin/fix-keyboard")
+(run-shell-command "emacs --daemon")
+(run-shell-command "dropbox-cli start")
 (run-shell-command "twmnd")
 
 ;;; Define window placement policy...
