@@ -7,65 +7,28 @@
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-z"))
 
+
+(setf *user-stumpwm-directory* "~/.stumpwm.d/")
+(setf *user-stumpwm-config-directory* (concat *user-stumpwm-directory* "configs/"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Commands
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; prompt the user for an interactive command. The first arg is an
-;; optional initial contents.
-(defcommand colon1 (&optional (initial "")) (:rest)
-  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
-    (when cmd
-      (eval-command cmd t))))
-
-;; launch or raise web browser
-(defcommand firefox () ()
-            "Start Firefox or switch to it, if it is already running."
-            (run-or-raise "firefox" '(:class "Firefox")))
-
-;; launch or raise spotify
-(defcommand spotify () ()
-            "Start Spotify or switch to it, if it already running."
-            (run-or-raise "spotify" '(:class "Spotify")))
-
-;; launch or raise emacs
-(defcommand emacs () ()
-            "Start Emacsclient or switch to it, if it is already running."
-            (run-or-raise "emacsclient" '(:class "Emacs")))
-
-;; Prints the current battery status, as showed by ACPI
-(defcommand show-battery () ()
-  (echo-string (current-screen) (run-shell-command "acpi" t)))
-
-;; Toggles the touchpad, uses synclient
-(defcommand toggle-touchpad () ()
-  "Toggles the touchpad using synclient"
-  (let
-      ;; Stores the integer showing whether touchpad is off or not in touchpadOff
-      ((touchpadOff (remove-if-not
-                     #'digit-char-p
-                     (run-shell-command "synclient | grep TouchpadOff" t))))
-    ;; touchpadOff is either "0" or "1"
-    (if (string= touchpadOff "0")
-        (run-shell-command "synclient TouchpadOff=1") ;; turn off touchpad
-        (run-shell-command "synclient TouchpadOff=0") ;; turn on touchpad
-        ))
-  )
+;; User-defined commands now live in:
+;;   *user-stumpwm-config-directory*/commands.lisp
+(load (concat *user-stumpwm-config-directory* "commands.lisp"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load extra config files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load Multimedia keys
-(load "~/.stumpwm.d/configs/multimedia-keys.lisp")
+(load (concat *user-stumpwm-config-directory* "multimedia-keys.lisp"))
 ;; Keybindings
-(load "~/.stumpwm.d/configs/keybindnings.lisp")
+(load (concat *user-stumpwm-config-directory* "keybindnings.lisp"))
 ;; Load Emacs setup
-(load "~/.stumpwm.d/configs/emacs.lisp")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Modules
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load-module "stumptray")
-(stumptray:stumptray)
+(load (concat *user-stumpwm-config-directory* "emacs.lisp"))
+;; Load appearance (such as fonts, mode-line and so on)
+(load (concat *user-stumpwm-config-directory* "appearance.lisp"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start background programs
@@ -85,6 +48,7 @@
 
 ;; Message window font
 (set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
+(run-shell-command "twmnd")
 
 ;;; Define window placement policy...
 ;; Clear rules
