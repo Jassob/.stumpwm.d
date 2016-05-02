@@ -3,13 +3,30 @@
 ;; prompt the user for an interactive command. The first arg is an
 ;; optional initial contents.
 (defcommand colon1 (&optional (initial "")) (:rest)
+  """Interactively ask for a command and evaluates it"""
   (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
     (when cmd
       (eval-command cmd t))))
 
+(defun cat (&rest strings)
+  "A shortcut for (concatenate 'string foo bar)."
+  (apply 'concatenate 'string strings))
+
+(defcommand google (search)
+  ((:string "Search in Google for: "))
+  "docstring"
+  (check-type search string)
+  (run-shell-command (cat
+		      "conkeror http://www.google.com/search?q="
+		      (substitute #\+ #\Space search))))
+
 (defcommand firefox () ()
   "Start Firefox or switch to it, if it is already running."
   (run-or-raise "firefox" '(:class "Firefox")))
+
+(defcommand conkeror () ()
+	    "Start Conkeror or switch to it, if it is already running."
+	    (run-or-raise "conkeror" '(:class "Conkeror")))
 
 (defcommand spotify () ()
   "Start Spotify or switch to it, if it already running."
@@ -34,6 +51,11 @@
 (defcommand show-battery () ()
   "Prints the current battery status, as showed by ACPI"
   (echo-string (current-screen) (run-shell-command "acpi" t)))
+
+(defcommand show-master-volume () ()
+	    "Prints the current master volume."
+	    (echo-string (current-screen)
+			 (run-shell-command "pamixer --get-volume | awk -F '[\n]' '{printf \"%s\", $1}'" t)))
 
 (defcommand toggle-touchpad () ()
   "Toggles the touchpad using synclient"
