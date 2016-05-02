@@ -29,8 +29,8 @@
 (define-key *root-map* (kbd "C-e") "exec emacsclient -c")
 
 ;; Override the xterm short keys
-(define-key *root-map* (kbd "C-c") "urxvt")
-(define-key *root-map* (kbd "c") "exec urxvt")
+(define-key *root-map* (kbd "c") "urxvt")
+(define-key *root-map* (kbd "C-c") "exec urxvt")
 
 ;; Run dmenu on C-z C-d
 (define-key *root-map* (kbd "C-d") "exec dmenu_run")
