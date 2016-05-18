@@ -1,8 +1,6 @@
 (in-package :stumpwm)
 
-;; Set up some variables
-(setf *user-stumpwm-directory* "~/.stumpwm.d/")
-(setf *user-stumpwm-contrib-directory*
+(defvar *user-stumpwm-contrib-directory*
       (concat *user-stumpwm-directory* "contrib/"))
 
 ;; Messages and input prompt to show up in center

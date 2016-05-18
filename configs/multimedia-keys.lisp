@@ -13,7 +13,7 @@
 ;; KEY DEFINITION - Key code symbol table
 ;; note: certain keyboards have this different. use xev to find yours if these don't work.
 ;; This table gets used to register the multimedia keys in case they are not recognized by xmodmap.
-(setf *key-codes*
+(defvar *key-codes*
       '((162 . "XF86AudioPlay")		   ; handled by amarok (or other mp3 players)
 	(164 . "XF86AudioStop")		   
 	(144 . "XF86AudioPrev")
@@ -24,9 +24,9 @@
         (233 . "XF86MonBrightnessUp")
         (232 . "XF86MonBrightnessDown")))
 
-(setf *mpris-destination* "org.mpris.MediaPlayer2.spotify")
-(setf *mpris-protocol*    "/org/mpris/MediaPlayer2")
-(setf *mpris-ns*          "org.mpris.MediaPlayer2.Player.")
+(defvar *mpris-destination* "org.mpris.MediaPlayer2.spotify")
+(defvar *mpris-protocol*    "/org/mpris/MediaPlayer2")
+(defvar *mpris-ns*          "org.mpris.MediaPlayer2.Player.")
 
 ;; Map keycodes to keysyms
 (mapcar (lambda (pair)

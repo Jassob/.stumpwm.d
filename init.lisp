@@ -7,9 +7,14 @@
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-z"))
 
+(redirect-all-output (data-dir-file "debug-output" "txt"))
 
-(setf *user-stumpwm-directory* "~/.stumpwm.d/")
-(setf *user-stumpwm-config-directory* (concat *user-stumpwm-directory* "configs/"))
+(defvar *user-stumpwm-directory* "~/.stumpwm.d/")
+(defvar *user-stumpwm-config-directory* (concat *user-stumpwm-directory* "configs/"))
+
+;; Browser of choice
+(defvar *www-browser* "conkeror")
+(defvar *x-terminal*  "urxvt")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Commands
