@@ -53,10 +53,8 @@
 (define-key *root-map* (kbd "C-d") "exec dmenu_run")
 
 ;; Screenshot
-(define-key *root-map* (kbd "C-p")
-  "screenshot")
-(define-key *root-map* (kbd "M-p")
-  "part-screenshot")
+(define-key *root-map* (kbd "C-p") "screenshot")
+(define-key *root-map* (kbd "M-p") "part-screenshot")
 
 ;; Print battery status
 (define-key *root-map* (kbd "C-b") "show-battery")

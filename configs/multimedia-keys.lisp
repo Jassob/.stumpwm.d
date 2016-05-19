@@ -40,21 +40,33 @@
 	*key-codes*)
 
 ;; Volume control
-(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioLowerVolume") "exec amixer set Master 5%-")
-(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioRaiseVolume") "exec amixer set Master 5%+")
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioLowerVolume")
+  "exec amixer set Master 5%-")
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioRaiseVolume")
+  "exec amixer set Master 5%+")
 
 ;; Mute
-(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioMute") "exec amixer set Master toggle")
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioMute")
+  "exec amixer set Master toggle")
 
 ;; Backlight control
-(define-key stumpwm:*top-map* (stumpwm:kbd "XF86MonBrightnessUp") "exec xbacklight -inc 5")
-(define-key stumpwm:*top-map* (stumpwm:kbd "XF86MonBrightnessDown") "exec xbacklight -dec 5")
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86MonBrightnessUp")
+  "exec xbacklight -inc 5")
+(define-key stumpwm:*top-map* (stumpwm:kbd "XF86MonBrightnessDown")
+  "exec xbacklight -dec 5")
 
 ;; Send commands to spotify process
-(defun send-to-spotify
-    (command)
+(defun send-to-spotify (command)
   "Send command to Spotify process via MPRIS"
-  (concat "exec dbus-send " "--print-reply " "--dest=" *mpris-destination* " " *mpris-protocol* " " *mpris-ns* command))
+  (concat "exec dbus-send "
+          "--print-reply "
+          "--dest="
+          *mpris-destination*
+          " "
+          *mpris-protocol*
+          " "
+          *mpris-ns*
+          command))
 
 ;; Play or pause spotify music
 (define-key stumpwm:*top-map* (stumpwm:kbd "XF86AudioPlay")

@@ -50,9 +50,9 @@
   (echo-string (current-screen) (run-shell-command "acpi" t)))
 
 (defcommand show-master-volume () ()
-	    "Prints the current master volume."
-	    (echo-string (current-screen)
-			 (run-shell-command "pamixer --get-volume | awk -F '[\n]' '{printf \"%s\", $1}'" t)))
+  "Prints the current master volume."
+  (echo-string (current-screen)
+               (run-shell-command "pamixer --get-volume | awk -F '[\n]' '{printf \"%s\", $1}'" t)))
 
 (defcommand toggle-touchpad () ()
   "Toggles the touchpad using synclient"
