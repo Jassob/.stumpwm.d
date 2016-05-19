@@ -14,19 +14,16 @@
 
 (defcommand google (search)
   ((:string "Search in Google for: "))
-  "docstring"
+  """Searches google for search query using *BROWSER*"""
   (check-type search string)
   (run-shell-command (cat
-		      "conkeror http://www.google.com/search?q="
+                      *www-browser*
+		      " http://www.google.com/search?q="
 		      (substitute #\+ #\Space search))))
 
-(defcommand firefox () ()
-  "Start Firefox or switch to it, if it is already running."
-  (run-or-raise "firefox" '(:class "Firefox")))
-
-(defcommand conkeror () ()
-	    "Start Conkeror or switch to it, if it is already running."
-	    (run-or-raise "conkeror" '(:class "Conkeror")))
+(defcommand browser () ()
+  "Start *WWW-BROWSER* or switch to it, if it is already running."
+  (run-or-raise *www-browser* `(:class, (string-capitalize *www-browser*))))
 
 (defcommand spotify () ()
   "Start Spotify or switch to it, if it already running."
@@ -36,9 +33,9 @@
   "Start Emacsclient or switch to it, if it is already running."
   (run-or-raise "emacsclient" '(:class "Emacs")))
 
-(defcommand urxvt () ()
+(defcommand term () ()
   "Start an urxvt instance or switch to it, if it is already running."
-  (run-or-raise "urxvt" '(:instance "urxvt")))
+  (run-or-raise *x-terminal* `(:instance ,*x-terminal*)))
 
 (defcommand screenshot () ()
   "Take a screenshot of the whole desktop."
