@@ -11,15 +11,6 @@
 (add-to-load-path (concat *user-stumpwm-contrib-directory* "util/ttf-fonts/"))
 (load-module "ttf-fonts")
 
-;; Load notifications module
-;; (might get around to use it for something, someday)
-(add-to-load-path (concat
-		   *user-stumpwm-contrib-directory*
-		   "minor-mode/notifications/"))
-
-(load-module "notifications")
-(define-key *root-map* (kbd "n") notifications:*notifications-map*)
-
 ;; Use the ttf-font module to set the font
 (set-font (make-instance 'xft:font
 			 :family "Inconsolata"
@@ -45,7 +36,7 @@
 
 ;; Set up mode-line-format
 (setf *screen-mode-line-format*
-      (list "[^B%n^b] %W^> {%N} "
+      (list "[^B%n^b] %W^> "
 	    '(:eval (run-shell-command *battery-status-command* t))
 	    " | Vol. "
 	    ;;'(:eval (run-shell-command *vol-status-command* t))
