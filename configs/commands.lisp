@@ -15,11 +15,12 @@
 (defcommand google (search)
   ((:string "Search in Google for: "))
   """Searches google for search query using *BROWSER*"""
-  (check-type search string)
-  (run-shell-command (cat
-                      *www-browser*
-		      " http://www.google.com/search?q="
-		      (substitute #\+ #\Space search))))
+  (when search
+    (check-type search string)
+    (run-shell-command (cat
+                        *www-browser*
+                        " http://www.google.com/search?q="
+                        (substitute #\+ #\Space search)))))
 
 (defcommand browser () ()
   "Start *WWW-BROWSER* or switch to it, if it is already running."
